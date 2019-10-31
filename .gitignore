@@ -95,4 +95,7 @@ public/
 # DynamoDB Local files
 .dynamodb/
 
+*.swap
+
+
 # End of https://www.gitignore.io/api/node
