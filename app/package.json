@@ -21,6 +21,7 @@
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
-    "eslint": "^6.5.1"
+    "eslint": "^6.5.1",
+    "braces": ">=2.3.1"
   }
 }
