@@ -96,6 +96,6 @@ public/
 .dynamodb/
 
 *.swap
-
+test.sh
 
 # End of https://www.gitignore.io/api/node
