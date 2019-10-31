@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Event log server</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font: 13px Helvetica, Arial;
+    }
+
+    .number {
+      font-size: 20em;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <p id="log" style="text-align:left;"></p> -->
+
+  <ul id="dataList"></ul>
+  <div class="templates">
+    <div id="listItem">
+      <div class="container center-algn">
+        <div class="card blue-grey darken-3">
+          <div class="card-content white-text">
+            <div id="tree"></div>
+            <p id="content">Waiting for events....</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+</body>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  function createNode(element) {
+    return document.createElement(element);
+  }
+  function append(parent, el) {
+    return parent.appendChild(el);
+  }
+
+  var listItemString = $('#listItem').html();
+  function buildNewList(item) {
+    var listItem = $('<li>' + listItemString + '</li>');
+    var itemTime = $('#content', listItem);
+    itemTime.html(JSON.stringify(item));
+    var text = "";
+    Object.keys(item).map(key => {
+      text += '<h5>' + key + '</h5>' + item[key] + '</br>';
+    });
+    $('#content', listItem).html(text);
+    $('#dataList').append(listItem);
+  };
+
+  $(function () {
+    var socket = io();
+    socket.on('init', function (count) {
+      document.getElementById("log").innerHTML = "-------  clear ------------- ";
+    });
+
+    socket.on('open', function (json) {
+      buildNewList(json);
+    });
+  });
+</script>
+
+</html>
