@@ -58,7 +58,7 @@
     itemTime.html(JSON.stringify(item));
     var text = "";
     Object.keys(item).map(key => {
-      text += '<h5>' + key + '</h5>' + item[key] + '</br>';
+      text += '<h5>' + key + '</h5>' + JSON.stringify(item[key]) + '</br>';
     });
     $('#content', listItem).html(text);
     $('#dataList').append(listItem);

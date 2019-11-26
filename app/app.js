@@ -16,7 +16,7 @@ router.post('/open', async function (ctx) {
     var msg = ctx.request.body;
     console.log('open/ POST data = ' + JSON.stringify(msg));
     io.emit('open', ctx.request.body);
-    ctx.body = "OK";
+    ctx.body = "OK\n";
 });
 
 
