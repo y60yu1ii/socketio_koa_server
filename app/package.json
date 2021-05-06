@@ -11,7 +11,7 @@
     "start": "forever app.js"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "forever": "^3.0.4",
     "fs": "^0.0.1-security",
     "http": "^0.0.0",
